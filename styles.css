@@ -4,12 +4,27 @@ body {
     margin: 0;
     background: #ebeef1;
 }
+a {
+  text-decoration: none;
+}
 .container {
     position: absolute;
     top: 20px;
     right: 20px;
     bottom: 20px;
     left: 20px;
+}
+.footer > p {
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.footer > p > small {
+  color: #a6a6a6;
+}
+.footer > p > small > a {
+  color: #959595;
+  font-weight: bold;
 }
 #content {
     font-size: 100%;

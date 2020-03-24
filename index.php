@@ -1,11 +1,11 @@
 <?php
 
 // Base URL of the website, without trailing slash.
-$base_url = 'https://notes.orga.cat';
+$base_url = getenv('BB_BASE_URL') ?: 'http://bbdemo.990521.xyz';
 
 // Path to the directory to save the notes in, without trailing slash.
 // Should be outside of the document root, if possible.
-$save_path = '_tmp';
+$save_path = getenv('BB_SAVE_PATH') ?: '_tmp';
 
 // Disable caching.
 header('Cache-Control: no-cache, no-store, must-revalidate');
@@ -16,7 +16,7 @@ header('Expires: 0');
 if (!isset($_GET['note']) || !preg_match('/^[a-zA-Z0-9_-]+$/', $_GET['note']) || strlen($_GET['note']) > 64) {
 
     // Generate a name with 5 random unambiguous characters. Redirect to it.
-    header("Location: $base_url/" . substr(str_shuffle('234579abcdefghjkmnpqrstwxyz'), -5));
+    header("Location: $base_url/" . substr(str_shuffle('234579abcdefghjkmnpqrstwxyz'), -6));
     die;
 }
 
@@ -44,12 +44,13 @@ if (isset($_GET['raw']) || strpos($_SERVER['HTTP_USER_AGENT'], 'curl') === 0) {
     }
     die;
 }
-?><!DOCTYPE html>
+?>
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="generator" content="Minimalist Web Notepad (https://github.com/pereorga/minimalist-web-notepad)">
+    <meta name="generator" content="Bullet Board (https://github.com/jokin1999/bulletboard)">
     <title><?php print $_GET['note']; ?></title>
     <link rel="shortcut icon" href="<?php print $base_url; ?>/favicon.ico">
     <link rel="stylesheet" href="<?php print $base_url; ?>/styles.css">
@@ -61,6 +62,11 @@ if (isset($_GET['raw']) || strpos($_SERVER['HTTP_USER_AGENT'], 'curl') === 0) {
                 print htmlspecialchars(file_get_contents($path), ENT_QUOTES, 'UTF-8');
             }
         ?></textarea>
+        <footer class="footer">
+          <p>
+            <small>Powered by <a href="https://github.com/jokin1999/bulletboard" target="_blank">Bullet Board</a></small>
+          </p>
+        </footer>
     </div>
     <pre id="printable"></pre>
     <script src="<?php print $base_url; ?>/script.js"></script>
