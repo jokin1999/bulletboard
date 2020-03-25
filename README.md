@@ -4,15 +4,17 @@
 
 Demo: [bbdemo.990521.xyz](http://bbdemo.990521.xyz)
 
+**不建议使用本程序存储任何重要文件与信息！**
 
 ## 快速安装 / Quick Start
 
 ### 配置 / Settings
 
-|设置项 / Key|环境变量 / Env Key|默认值 / Value|
-|:-:|:-:|:-:|
-|$base_url|BB_BASE_URL|http://bbdemo.990521.xyz|
-|$save_path|BB_SAVE_PATH|_tmp|
+|设置项 / Key|环境变量 / Env Key|默认值 / Value|备注 / Comment|
+|:-:|:-:|:-:|:-:|
+| $base_url | BB_BASE_URL | http://bbdemo.990521.xyz | 基础地址 |
+| $save_path | BB_SAVE_PATH | _tmp | 存储文件夹 |
+| $api_passwd | BB_API_PASSWD | `NULL` | API接口密码，建议仅通过环境变量设置 |
 
 在部署子弹板前，需要对`index.php`文件进行设置，设置`$base_url`变量的值为您的站点地址，或者通过**环境变量**`BB_BASE_URL`设置（环境变量设置优先级高于变量设置，**推荐使用环境变量设置**）。
 
@@ -45,9 +47,11 @@ location ~* ^/notes/([a-zA-Z0-9_-]+)$ {
 
 ### GearHost 一键部署
 
-**以下教程基于已经Fork本项目的基础上进行！**
+> `GearHost`部署后，每次更新都将 **清空数据**！
 
-**Fork this project first!**
+以下教程基于已经Fork本项目的基础上进行！
+
+Fork this project first!
 
 #### 中文
 - 注册/登录 [GearHost](https://gearhost.com)
@@ -78,6 +82,48 @@ location ~* ^/notes/([a-zA-Z0-9_-]+)$ {
   - Click `Authorize` and follow the guide
   - Click `bulletboard` Project， `master` Branch
   - Click `Activate`
+
+## API接口 / API Interface
+
+### 基本参数说明
+
+**API接口使用`GET`方式传递并返回`JSON`格式数据**
+
+|键 / Key|值 / Value|备注 / Comment|
+|:-:|:-:|:-:|
+|raw|`NULL`|设置任意值将直接返回文件内容，仅获取内容时有效|
+|apipasswd|`API Password`|API 接口密码|
+|apiaction|`API Action`|API 指令，参考下方`API Action`|
+
+### API Action
+|Action|Comment|备注|
+|:-:|:-:|:-:|
+|gdl|Get the data list|返回数据文件表|
+|cd|Clear all the data|清空数据文件夹|
+
+### API 返回
+
+成功案例：
+
+```json
+{
+  "code": 0,
+  "msg": "Success.",
+  "data": [...],
+  "version": "1.0.0"
+}
+```
+
+失败案例：
+
+```json
+{
+  "code": 1,
+  "msg": "Not found action.",
+  "data": null,
+  "version": "1.0.0"
+}
+```
 
 ## 关于 / About
 
