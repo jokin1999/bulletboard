@@ -2,7 +2,7 @@
 
 子弹板，用于快速传递简要数据，实现无登录、无授权、无需下载的三无产品。
 
-Demo: [bbdemo.990521.xyz](http://bbdemo.990521.xyz)
+Demo: [bbdemo.990521.xyz](http://bbdemo.990521.xyz), API password: `bbdemo`
 
 **不建议使用本程序存储任何重要文件与信息！**
 
