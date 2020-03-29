@@ -12,13 +12,13 @@ Demo: [bbdemo.990521.xyz](http://bbdemo.990521.xyz), API password: `bbdemo`
 
 |设置项 / Key|环境变量 / Env Key|默认值 / Value|备注 / Comment|
 |:-:|:-:|:-:|:-:|
-| $base_url | BB_BASE_URL | http://bbdemo.990521.xyz | 基础地址 |
 | $save_path | BB_SAVE_PATH | _tmp | 存储文件夹 |
 | $api_passwd | BB_API_PASSWD | `NULL` | API接口密码，建议仅通过环境变量设置 |
+| $base_url | BB_BASE_URL | `AUTO` | 基础地址，如`http://bbdemo.990521.xyz`(此设置已经自动配置，仅出现预料外情况下使用) |
 
 在部署子弹板前，需要对`index.php`文件进行设置，设置`$base_url`变量的值为您的站点地址，或者通过**环境变量**`BB_BASE_URL`设置（环境变量设置优先级高于变量设置，**推荐使用环境变量设置**）。
 
-请确保`BB_SAVE_PATH`环境变量或`$save_path`变量指向的目录路径可读可写。
+请确保`BB_SAVE_PATH`环境变量或`$save_path`变量指向的目录路径（默认为`index.php`文件同级目录`_tmp`）可读可写。
 
 ### 重定向 / REWRITE
 
